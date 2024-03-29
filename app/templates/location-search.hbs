@@ -1,0 +1,35 @@
+# FILEPATH
+
+def show_popup_window():
+    """
+    Displays a pop-up window.
+    
+    This function is used to show a pop-up window on the screen. The pop-up window
+    can be used to display important information or prompt the user for input.
+    """
+    # Code to display the pop-up window goes here
+    pass
+
+<div class="inputsearchfield">
+  <input
+    class="search-location-city1"
+    placeholder="Search location, city, postal code or place"
+    type="text"
+    value={{this.searchInput}}
+    {{on "input" this.updateSearchInput}}
+  />
+
+  <div class="child-growth">
+    <img class="search-icon1" alt="" src="./public/search.svg" />
+  </div>
+
+  {{#if this.searchResults}}
+    <div class="dropdown-menu">
+      {{#each this.searchResults as |location|}}
+        <a href="#" {{on "click" (fn this.selectLocation location)}}>
+          {{location.name}}
+        </a>
+      {{/each}}
+    </div>
+  {{/if}}
+</div>

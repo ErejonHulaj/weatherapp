@@ -1,0 +1,907 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="initial-scale=1, width=device-width" />
+
+    <link rel="stylesheet" href="./global.css" />
+    <link rel="stylesheet" href="./index.css" />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Manrope:wght@400&display=swap"
+    />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Lexend:wght@200;300;400;700&display=swap"
+    />
+  </head>
+  <body>
+    <div class="homepage-dashboard1">
+      <div class="sidebarondashboard">
+        <h1 class="weather-pro5">WEATHER PRO</h1>
+        <div class="dashboardbutton-frame">
+          <button class="dashboardbutton2">
+            <div class="dashboardicon-container">
+              <img class="dashboardicon2" alt="" src="./public/category.svg" />
+            </div>
+            <div class="dashboard6">Dashboard</div>
+          </button>
+        </div>
+        <div class="leaf-cluster-wrapper">
+          <div class="leaf-cluster">
+            <div class="savedlocationsicon-group" id="frameContainer">
+              <img
+                class="savedlocationsicon1"
+                loading="lazy"
+                alt=""
+                src="./public/favorite-1.svg"
+              />
+
+              <div class="saved-locations5">Saved locations</div>
+            </div>
+            <div class="ancestry-tree">
+              <div class="settingsicon-frame">
+                <img class="settingsicon2" alt="" src="./public/gear-1.svg" />
+              </div>
+              <div class="settings6">Settings</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <main class="homepage-dashboard-child">
+        <section class="frame-parent40">
+          <header class="frame-header">
+            <div class="relation-network-parent">
+              <div class="relation-network">
+                <div class="root-development">
+                  <div class="child-branching">
+                    <div class="mappin-wrapper">
+                      <img
+                        class="mappin-icon"
+                        alt=""
+                        src="./public/mappin.svg"
+                      />
+                    </div>
+                    {{!-- {{#if this.locationSelected}} --}}
+                      <h2 class="currentlocation">{{this.locationSelected.name}}</h2>
+                    {{!-- else --}}
+                      <h2 class="currentlocation">No Location</h2>
+                    {{!--/if!--}}
+                  </div>
+                  {{!--#if this.locationSelected!--}}
+                  <div class="save-as-favourite-wrapper">
+                    <button class="save-as-favourite" {{on "click" this.saveLocation}}>
+                    <div class="saveasfavouriteicon-wrapper">
+                      <img
+                        class="saveasfavouriteicon"
+                        alt=""
+                        src="./public/saveasfavouriteicon.svg"
+                      />
+                    </div>
+                    <div class="dashboard7">Save as Favourite</div>
+                    </button>
+                  </div>
+                </div>
+              </div>
+              <LocationSearch @onSelect={{this.fetchData}} />
+            </div>
+            <div class="switchunitbutton-parent">
+              <div class="switchunitbutton">
+                <button class="buttonunitcelsius" {{on "click" (fn this.fetchData 'celsius')}}>
+                  <div class="celsius1">Celsius</div>
+                </button>
+                <div class="buttonunitfahrenheit" {{on "click" (fn this.fetchData 'fahrenheit')}}>
+                  <div class="fahrenheit1">Fahrenheit</div>
+                </div>
+              </div>
+              <div class="settings-wrapper">
+                <img
+                  class="settings-icon"
+                  loading="lazy"
+                  alt=""
+                  src="./public/settings.svg"
+                />
+              </div>
+            </div>
+          </header>
+          <div class="frame-parent41">
+            <div class="currenttemperaturecockpit-parent">
+              <div class="currenttemperaturecockpit">
+                <div class="related-branches">
+                  <div class="wrapper-currentweathericon-parent">
+                    <div class="wrapper-currentweathericon">
+                      <img
+                        class="currentweathericon"
+                        loading="lazy"
+                        alt=""
+                        src="./public/currentweathericon@2x.png"
+                      />
+                    </div>
+                    <div class="currenttemperaturevalue-parent">
+                      <b class="currenttemperaturevalue">1 °C</b>
+                      <div class="data-aggregator-group">
+                        <div class="data-aggregator5">
+                            <h2 class="currentlocation">{{city}}, {{country}}</h2>
+                          <div class="currentweatherdescription">
+                            {{#with weatherData}}
+                              {{weatherDescription}}
+                            {{/with}}
+                          </div>
+                        </div>
+                        <div class="table-row">
+                          <div class="output-handler">
+                            <div class="tune-1-wrapper">
+                              <img
+                                class="tune-1-icon1"
+                                alt=""
+                                src="./public/tune-11.svg"
+                              />
+                            </div>
+                            <b class="real-feel1">Feels like:</b>
+                            <div class="feelsliketemperaturecurrentday">
+                              {{#with weatherData}}
+                                {{feelsLikeTemperature}} °C
+                              {{/with}}
+                            </div>
+                          </div>
+                          <div class="constant">
+                            <div class="matrix">
+                              <img
+                                class="calendericon"
+                                alt=""
+                                src="./public/calendericon.svg"
+                              />
+                            </div>
+                              <div class="currentdate">{{this.currentDate}}</div>
+                          </div>
+                          <div class="dict">
+                            <div class="set">
+                              <img
+                                class="timeicon"
+                                alt=""
+                                src="./public/timeicon.svg"
+                              />
+                            </div>
+                            <b class="currentexacttime">10:25:20</b>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="grid-layout">
+                  <h3 class="temperature2">Temperature</h3>
+                  <div class="network">
+                    <img
+                      class="temperaturelinechartofcurrentd-icon"
+                      loading="lazy"
+                      alt=""
+                      src="./public/temperaturelinechartofcurrentday.svg"
+                    />
+
+                    <div class="temperatureoverviewofcurrentda-wrapper">
+                      <div class="temperatureoverviewofcurrentda">
+                        <div class="form-container">
+                          <b class="morning1">Morning</b>
+                          <div class="schema">
+                            <div class="morningofcurrentdaytemperature">
+                              1 °C
+                            </div>
+                          </div>
+                        </div>
+                        <div class="form-container1">
+                          <b class="afternoon1">Afternoon</b>
+                          <div class="afternoonofcurrentdaytemperatu-wrapper">
+                            <div class="afternoonofcurrentdaytemperatu">
+                              3 °C
+                            </div>
+                          </div>
+                        </div>
+                        <div class="tag-cloud">
+                          <div class="evening-parent">
+                            <b class="evening1">Evening</b>
+                            <b class="night1">Night</b>
+                          </div>
+                          <div class="tabbed-form">
+                            <div class="heap">
+                              <div class="graph-algo">
+                                <div class="eveningofcurrentdaytemperature">
+                                  1 °C
+                                </div>
+                              </div>
+                              <div class="nightofcurrentdaytemperature">
+                                2 °C
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="date-picker">
+                      <div class="time-picker">
+                        <div class="star-rating">
+                          <h3 class="h1">H</h3>
+                          <div class="range-seeker">
+                            <img
+                              class="arrow-up-11"
+                              loading="lazy"
+                              alt=""
+                              src="./public/arrow-up-1.svg"
+                            />
+                          </div>
+                          <div class="n-n">
+                            <div class="maximumtemperatureofcurrentday">
+                              3 °C
+                            </div>
+                          </div>
+                        </div>
+                        <div class="s-v-m-wrapper">
+                          <div class="s-v-m">
+                            <div class="r-b-f-n">
+                              <img
+                                class="airpressureicon"
+                                alt=""
+                                src="./public/airpressureicon.svg"
+                              />
+                            </div>
+                            <div class="airpressurecurrentday">720 hpa</div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="scrollbar-container">
+                        <div class="data-aggregator6">
+                          <div class="data-aggregator-wrapper">
+                            <div class="data-aggregator7">
+                              <div class="geometry-shaper">
+                                <div class="boolean-operator">
+                                  <div class="l1">L</div>
+                                  <div class="arrow-down-1-container">
+                                    <img
+                                      class="arrow-down-11"
+                                      alt=""
+                                      src="./public/arrow-down-1.svg"
+                                    />
+                                  </div>
+                                </div>
+                              </div>
+                              <div class="minimumtemperatureofcurrentday">
+                                1 °C
+                              </div>
+                            </div>
+                          </div>
+                          <div class="frame-parent42">
+                            <div class="rainprobabilityicon-wrapper">
+                              <img
+                                class="rainprobabilityicon"
+                                loading="lazy"
+                                alt=""
+                                src="./public/rainprobabilityicon.svg"
+                              />
+                            </div>
+                            <div class="rainprobabilitycurrentday">10%</div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="maps-parent">
+                <div class="maps1">
+                  <img
+                    class="mapsicon"
+                    loading="lazy"
+                    alt=""
+                    src="./public/position-pin-1.svg"
+                  />
+
+                  <div class="maps-group">
+                    <h3 class="maps2">Maps</h3>
+                    <div class="maps-container">
+                      <img
+                        class="maps-icon"
+                        alt=""
+                        src="./public/maps@2x.png"
+                      />
+
+                      <img
+                        class="arrows-maximize-2-11"
+                        alt=""
+                        src="./public/arrows-maximize-2-1.svg"
+                      />
+                    </div>
+                  </div>
+                </div>
+                <div class="frame-parent43">
+                  <div class="windspeed-parent">
+                    <div class="windspeed">
+                      <div class="frame-parent44">
+                        <div class="windspeed-wrapper">
+                          <img
+                            class="windspeed-icon"
+                            loading="lazy"
+                            alt=""
+                            src="./public/wind-1.svg"
+                          />
+                        </div>
+                        <h3 class="wind-speed2">Wind Speed</h3>
+                      </div>
+                      <div class="windspeed-inner">
+                        <div class="frame-parent45">
+                          <div class="windspeedlinechart-wrapper">
+                            <img
+                              class="windspeedlinechart-icon"
+                              loading="lazy"
+                              alt=""
+                              src="./public/windspeedlinechart.svg"
+                            />
+                          </div>
+                          <b class="kmh1">12km/h</b>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="winddirection">
+                      <h3 class="winddirection1">Wind Direction</h3>
+                      <div class="currentwinddirection-wrapper">
+                        <h1 class="currentwinddirection">North East</h1>
+                      </div>
+                      <img
+                        class="windarrow-icon"
+                        loading="lazy"
+                        alt=""
+                        src="./public/windarrow.svg"
+                      />
+                    </div>
+                  </div>
+                  <div class="uvindex-parent">
+                    <div class="uvindex">
+                      <div class="uvindex-inner">
+                        <div class="frame-parent46">
+                          <div class="uvindexicon-wrapper">
+                            <img
+                              class="uvindexicon"
+                              loading="lazy"
+                              alt=""
+                              src="./public/moon-cloud-snow-62-2.svg"
+                            />
+                          </div>
+                          <h3 class="uv-index1">UV index</h3>
+                        </div>
+                      </div>
+                      <div class="frame-parent47">
+                        <div class="currentuvindexranking-wrapper">
+                          <div class="currentuvindexranking">Low</div>
+                        </div>
+                        <div class="uvindexchart">
+                          <img
+                            class="uvindexchartcircle-icon"
+                            loading="lazy"
+                            alt=""
+                            src="./public/uvindexchartcircle.svg"
+                          />
+
+                          <div class="currentuvindex">3</div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="rainchance">
+                      <div class="branching-logic">
+                        <div class="input-processor1">
+                          <div class="rainchanceicon-wrapper">
+                            <img
+                              class="rainchanceicon"
+                              loading="lazy"
+                              alt=""
+                              src="./public/moon-cloud-snow-62-2.svg"
+                            />
+                          </div>
+                          <h3 class="rain-chance1">Rain chance</h3>
+                        </div>
+                      </div>
+                      <div class="frame-parent48">
+                        <div class="rainchancechart-wrapper">
+                          <button class="rainchancechart">
+                            <img
+                              class="rainchancechartcircle-icon"
+                              alt=""
+                              src="./public/uvindexchartcircle.svg"
+                            />
+
+                            <div class="currentrainchance">23%</div>
+                          </button>
+                        </div>
+                        <div class="currentrainchanceranking">Low</div>
+                      </div>
+                    </div>
+                    <div class="cloudcoverage">
+                      <div class="frame-parent49">
+                        <div class="cloudcoverageicon-wrapper">
+                          <img
+                            class="cloudcoverageicon"
+                            loading="lazy"
+                            alt=""
+                            src="./public/cloud-forecast-1.svg"
+                          />
+                        </div>
+                        <h3 class="cloud-cover1">Cloud cover</h3>
+                      </div>
+                      <div class="frame-parent50">
+                        <div class="cloudcoveragechart-wrapper">
+                          <button class="cloudcoveragechart">
+                            <img
+                              class="cloudcoveragechartcircle-icon"
+                              alt=""
+                              src="./public/uvindexchartcircle.svg"
+                            />
+
+                            <div class="currentcloudcoverage">80%</div>
+                          </button>
+                        </div>
+                        <div class="currentcloudcoverageranking">High</div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="container-26-parent">
+              <div class="container-262">
+                <h2 class="today1">Today</h2>
+                <div class="container-17-group">
+                  <div class="container-1711">
+                    <div class="now-parent">
+                      <div class="now1">00:00</div>
+                      <div class="wrapper-group-16-wrapper">
+                        <div class="wrapper-group-16">
+                          <img
+                            class="wrapper-group-16-child"
+                            alt=""
+                            src="./public/group-16@2x.png"
+                          />
+                        </div>
+                      </div>
+                    </div>
+                    <div class="c-wrapper8">
+                      <div class="c28">1 °C</div>
+                    </div>
+                  </div>
+                  <div class="container-1712">
+                    <div class="group">
+                      <div class="div12">04:00</div>
+                      <div class="wrapper-group-41">
+                        <img
+                          class="wrapper-group-41-child"
+                          alt=""
+                          src="./public/group-41@2x.png"
+                        />
+                      </div>
+                    </div>
+                    <div class="c-wrapper9">
+                      <div class="c29">2 °C</div>
+                    </div>
+                  </div>
+                  <div class="container-18">
+                    <div class="parent1">
+                      <div class="div13">08:00</div>
+                      <div class="wrapper-group-42-wrapper">
+                        <div class="wrapper-group-42">
+                          <img
+                            class="wrapper-group-42-child"
+                            alt=""
+                            src="./public/group-42@2x.png"
+                          />
+                        </div>
+                      </div>
+                    </div>
+                    <div class="c-wrapper10">
+                      <div class="c30">2 °C</div>
+                    </div>
+                  </div>
+                  <div class="container-19">
+                    <div class="frame-parent51">
+                      <div class="wrapper3">
+                        <div class="div14">12:00</div>
+                      </div>
+                      <div class="wrapper-group-421">
+                        <img
+                          class="wrapper-group-42-item"
+                          alt=""
+                          src="./public/group-42@2x.png"
+                        />
+                      </div>
+                    </div>
+                    <div class="c-wrapper11">
+                      <div class="c31">3 °C</div>
+                    </div>
+                  </div>
+                  <div class="container-201">
+                    <div class="parent2">
+                      <div class="div15">18:00</div>
+                      <div class="wrapper-group-43-wrapper">
+                        <div class="wrapper-group-43">
+                          <img
+                            class="wrapper-group-43-child"
+                            alt=""
+                            src="./public/group-43@2x.png"
+                          />
+                        </div>
+                      </div>
+                    </div>
+                    <div class="c-wrapper12">
+                      <div class="c32">1 °C</div>
+                    </div>
+                  </div>
+                  <div class="container-211">
+                    <div class="parent3">
+                      <div class="div16">20:00</div>
+                      <div class="wrapper-group-44-wrapper">
+                        <div class="wrapper-group-44">
+                          <img
+                            class="wrapper-group-44-child"
+                            alt=""
+                            src="./public/group-43@2x.png"
+                          />
+                        </div>
+                      </div>
+                    </div>
+                    <div class="c-wrapper13">
+                      <div class="c33">0 °C</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="dayforecastcontainer-wrapper">
+                <div class="dayforecastcontainer">
+                  <div class="day-forecast-wrapper">
+                    <h2 class="day-forecast2">5 Day Forecast</h2>
+                  </div>
+                  <div class="day1values-parent">
+                    <div class="day1values">
+                      <div class="day1values-inner">
+                        <div class="tommorrow-parent">
+                          <h3 class="tommorrow1">Tommorrow</h3>
+                          <div class="mar-wrapper3">
+                            <div class="mar5">25 Mar</div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="frame-parent52">
+                        <div class="c-wrapper14">
+                          <b class="c34">1 °C</b>
+                        </div>
+                        <div class="data-processor">
+                          <div class="string-parser">
+                            <div class="number-cruncher">
+                              <div class="max5">Min:</div>
+                              <div class="c35">0 °C</div>
+                            </div>
+                            <div class="graph-generator">
+                              <div class="max6">Max:</div>
+                              <div class="c36">3 °C</div>
+                            </div>
+                          </div>
+                          <div class="rain-parent3">
+                            <div class="rain5">Rain:</div>
+                            <div class="error-handler">10 %</div>
+                          </div>
+                        </div>
+                        <div class="network-communicator">
+                          <div class="wrapper-partlycloudy">
+                            <img
+                              class="partlycloudy-icon"
+                              loading="lazy"
+                              alt=""
+                              src="./public/partlycloudy@2x.png"
+                            />
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="day2values">
+                      <div class="tuesday-container">
+                        <h3 class="tuesday2">Tuesday</h3>
+                        <div class="mar-wrapper4">
+                          <div class="mar6">26 Mar</div>
+                        </div>
+                      </div>
+                      <div class="c-wrapper15">
+                        <b class="c37">2 °C</b>
+                      </div>
+                      <div class="operator">
+                        <div class="variable-store">
+                          <div class="filter">
+                            <div class="max7">Min:</div>
+                            <div class="c38">1 °C</div>
+                          </div>
+                          <div class="integrator1">
+                            <div class="max8">Max:</div>
+                            <div class="interpreter">
+                              <div class="c39">4 °C</div>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="rain-parent4">
+                          <div class="rain6">Rain:</div>
+                          <div class="inspector">80 %</div>
+                        </div>
+                      </div>
+                      <div class="connection-creator">
+                        <div class="wrapper-rainy">
+                          <img
+                            class="rainy-icon"
+                            loading="lazy"
+                            alt=""
+                            src="./public/rainy@2x.png"
+                          />
+                        </div>
+                      </div>
+                    </div>
+                    <div class="day3values">
+                      <div class="day3values-inner">
+                        <div class="wednesday-group">
+                          <h3 class="wednesday1">Wednesday</h3>
+                          <div class="mar-wrapper5">
+                            <div class="mar7">27 Mar</div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="frame-parent53">
+                        <div class="c-wrapper16">
+                          <b class="c40">4 °C</b>
+                        </div>
+                        <div class="frame-parent54">
+                          <div class="frame-wrapper19">
+                            <div class="frame-parent55">
+                              <div class="min-parent3">
+                                <div class="min5">Min:</div>
+                                <div class="c41">1 °C</div>
+                              </div>
+                              <div class="max-group">
+                                <div class="max9">Max:</div>
+                                <div class="queue-processor">
+                                  <div class="c42">5 °C</div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="rain-parent5">
+                            <div class="rain7">Rain:</div>
+                            <div class="div17">90 %</div>
+                          </div>
+                        </div>
+                        <div class="wrapper-stormy-wrapper">
+                          <div class="wrapper-stormy">
+                            <img
+                              class="stormy-icon"
+                              loading="lazy"
+                              alt=""
+                              src="./public/stormy@2x.png"
+                            />
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="day4values">
+                      <div class="tuesday-parent1">
+                        <h3 class="tuesday3">Tuesday</h3>
+                        <div class="mar-wrapper6">
+                          <div class="mar8">28 Mar</div>
+                        </div>
+                      </div>
+                      <div class="c-wrapper17">
+                        <b class="c43">4 °C</b>
+                      </div>
+                      <div class="frame-parent56">
+                        <div class="frame-wrapper20">
+                          <div class="frame-parent57">
+                            <div class="min-parent4">
+                              <div class="min6">Min:</div>
+                              <div class="c44">2 °C</div>
+                            </div>
+                            <div class="max-container">
+                              <div class="max10">Max:</div>
+                              <div class="serializer">
+                                <div class="c45">7 °C</div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="rain-parent6">
+                          <div class="rain8">Rain:</div>
+                          <div class="div18">10 %</div>
+                        </div>
+                      </div>
+                      <div class="sunny-wrapper">
+                        <img
+                          class="sunny-icon"
+                          loading="lazy"
+                          alt=""
+                          src="./public/sunny@2x.png"
+                        />
+                      </div>
+                    </div>
+                    <div class="day5values">
+                      <div class="friday-group">
+                        <h3 class="friday1">Friday</h3>
+                        <div class="mar-wrapper7">
+                          <div class="mar9">29 Mar</div>
+                        </div>
+                      </div>
+                      <div class="c-wrapper18">
+                        <b class="c46">-2 °C</b>
+                      </div>
+                      <div class="frame-parent58">
+                        <div class="frame-parent59">
+                          <div class="min-parent5">
+                            <div class="min7">Min:</div>
+                            <div class="c47">-2 °C</div>
+                          </div>
+                          <div class="max-parent1">
+                            <div class="max11">Max:</div>
+                            <div class="c48">0 °C</div>
+                          </div>
+                        </div>
+                        <div class="rain-parent7">
+                          <div class="rain9">Rain:</div>
+                          <div class="div19">0 %</div>
+                        </div>
+                      </div>
+                      <div class="snow-wrapper">
+                        <img
+                          class="snow-icon"
+                          loading="lazy"
+                          alt=""
+                          src="./public/snow@2x.png"
+                        />
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="sunrisesunsetcontainer">
+                <div class="condition">
+                  <div class="user-input-processor">
+                    <img
+                      class="sunicon"
+                      loading="lazy"
+                      alt=""
+                      src="./public/sun-2.svg"
+                    />
+
+                    <div class="state-machine">
+                      <h2 class="sunrise-sunset1">Sunrise & Sunset</h2>
+                    </div>
+                  </div>
+                  <div class="composition-wrapper">
+                    <div class="composition">
+                      <div class="current-time1">Current Time:</div>
+                      <div class="sound-recorder">
+                        <div class="currenttimevalue">10:25 AM</div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="sunrisetimeofcurrentday-wrapper">
+                  <b class="sunrisetimeofcurrentday">05:12 AM</b>
+                </div>
+                <div class="publisher">
+                  <h3 class="sunrise1">Sunrise</h3>
+                </div>
+                <div class="database-manager">
+                  <div class="ovalformforsunrisesunset"></div>
+                  <img
+                    class="movingsuninhalfcircle-icon"
+                    loading="lazy"
+                    alt=""
+                    src="./public/movingsuninhalfcircle@2x.png"
+                  />
+
+                  <div class="data-aggregator8">
+                    <b class="sunsettimeofcurrentday">06:13 PM</b>
+                  </div>
+                </div>
+                <div class="publisher1">
+                  <h3 class="sunset1">Sunset</h3>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="image-container">
+            <div class="chartandstatistics">
+              <div class="link-list">
+                <div class="input-form">
+                  <h2 class="charts-and-statistics1">Charts and Statistics</h2>
+                </div>
+                <div class="checkbox-set">
+                  <div class="changeoptiononedayor5forecast">
+                    <button class="optiononedayforecast">
+                      <div class="day1">Day</div>
+                    </button>
+                    <button class="option5dayforecast">
+                      <div class="day-forecast3">5 Day Forecast</div>
+                    </button>
+                  </div>
+                  <div class="dropdownmenuforchartsparameter">
+                    <div class="show-all1">Show All</div>
+                    <img
+                      class="arrowdowndropdownmenu-icon"
+                      alt=""
+                      src="./public/chevron-down-large.svg"
+                    />
+                  </div>
+                </div>
+              </div>
+              <div class="cell">
+                <div class="divider">
+                  <div class="frame-parent60">
+                    <div class="frame-parent61">
+                      <div class="ellipse-frame">
+                        <div class="ellipse2"></div>
+                      </div>
+                      <div class="temperature3">Temperature</div>
+                    </div>
+                    <div class="frame-parent62">
+                      <div class="ellipse-wrapper1">
+                        <div class="ellipse3"></div>
+                      </div>
+                      <div class="humidity1">Humidity</div>
+                    </div>
+                    <div class="frame-parent63">
+                      <div class="ellipse-wrapper2">
+                        <div class="ellipse4"></div>
+                      </div>
+                      <div class="wind-speed3">Wind Speed</div>
+                    </div>
+                  </div>
+                  <div class="list">
+                    <div class="value3">400</div>
+                    <div class="quote">
+                      <div class="shape">
+                        <div class="path1">
+                          <div class="value2">300</div>
+                          <div class="value1">200</div>
+                          <div class="value0">100</div>
+                        </div>
+                      </div>
+                      <div class="wrapper-chartallparameters">
+                        <img
+                          class="chartallparameters-icon"
+                          loading="lazy"
+                          alt=""
+                          src="./public/chartallparameters.svg"
+                        />
+                      </div>
+                    </div>
+                  </div>
+                  <div class="parent4">
+                    <div class="div20">0</div>
+                    <div class="arcs">
+                      <div class="day0-parent">
+                        <div class="day0">25 Mon</div>
+                        <div class="day11">26 Tue</div>
+                        <div class="day2">27 Wed</div>
+                        <div class="day3">28 Tue</div>
+                        <div class="day4">29 Fri</div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+      </main>
+    </div>
+
+    <script>
+      var frameContainer = document.getElementById("frameContainer");
+      if (frameContainer) {
+        frameContainer.addEventListener("click", function (e) {
+          window.location.href = "./saved-locations-no-locations-yet.html";
+        });
+      }
+      </script>
+  </body>
+</html>
+
+{{outlet}}
